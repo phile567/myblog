@@ -1,0 +1,481 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 🔥 权限相关样式 - 新增（blog.css中没有的） */
+.access-denied {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 2rem auto;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.access-denied h2 {
+  color: #dc3545;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.access-denied p {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.access-denied a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.access-denied a:hover {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+/* 🔥 文章管理样式增强（扩展blog.css的按钮样式） */
+.article-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.article-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.article-info {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.article-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.article-info h3 a {
+  color: #1f2937;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-info h3 a:hover {
+  color: #0ea5e9;
+}
+
+.article-meta {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.article-summary {
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.article-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* 🔥 扩展blog.css的按钮系统 */
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0056b3;
+  border-color: #004085;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #545b62;
+  border-color: #4e555b;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: white;
+  text-decoration: none;
+}
+
+/* 🔥 文章列表布局 */
+.articles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.articles-header h1 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.articles-list {
+  margin-top: 1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.empty-state a {
+  color: #0ea5e9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.empty-state a:hover {
+  text-decoration: underline;
+}
+
+/* 🔥 文章表单样式（扩展blog.css的表单样式） */
+.article-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.content-textarea {
+  min-height: 400px;
+  resize: vertical;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  line-height: 1.5;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* 🔥 页面头部样式 */
+.create-header,
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.create-header h1,
+.edit-header h1 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* 🔥 导航栏权限相关（修复登出按钮） */
+.logout-btn {
+  background: none !important;
+  border: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: auto !important;
+  line-height: inherit !important;
+  vertical-align: baseline !important;
+}
+
+.logout-btn:hover {
+  color: #0ea5e9 !important;
+}
+
+/* Google Translate 相关样式 */
+.google-translate-container {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  margin-left: 0.5rem !important;
+}
+
+.translate-icon {
+  font-size: 14px !important;
+  color: #666 !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#google_translate_element {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+}
+
+.goog-te-gadget {
+  font-family: inherit !important;
+  font-size: 0 !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  font-size: 12px !important;
+  color: #374151 !important;
+  background: white !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 4px !important;
+  padding: 4px 6px !important;
+  margin: 0 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  font-family: inherit !important;
+  min-width: 80px !important;
+  height: 24px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+.goog-te-gadget .goog-te-combo:hover {
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.goog-te-gadget .goog-te-combo:focus {
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.1) !important;
+}
+
+/* 隐藏不需要的Google翻译元素 */
+.goog-te-gadget-icon,
+.goog-logo-link,
+.goog-te-gadget img,
+.goog-te-gadget > span:not(:last-child),
+.goog-te-banner-frame,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* 确保导航栏对齐 */
+.nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.nav > * {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* 防止页面跳动 */
+body {
+  top: 0 !important;
+  position: relative !important;
+}
+
+/* 确保翻译组件不会影响页面布局 */
+.skiptranslate {
+  display: inline-block !important;
+}
+
+/* 响应式设计增强 */
+@media (max-width: 768px) {
+  /* 🔥 移动端权限相关样式适配 */
+  .article-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .article-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .articles-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .create-header,
+  .edit-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .article-form {
+    padding: 1rem;
+    margin: 0;
+  }
+  
+  .access-denied {
+    padding: 2rem 1rem;
+    margin: 1rem;
+  }
+  
+  /* 移动端翻译组件优化 */
+  .google-translate-container {
+    margin-left: 0.25rem !important;
+    gap: 1px !important;
+  }
+  
+  .translate-icon {
+    font-size: 12px !important;
+  }
+  
+  .goog-te-gadget .goog-te-combo {
+    font-size: 11px !important;
+    padding: 3px 5px !important;
+    min-width: 70px !important;
+    height: 22px !important;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  /* 打印时隐藏权限相关元素 */
+  .article-actions,
+  .articles-header .btn,
+  .create-header .btn,
+  .edit-header .btn,
+  .access-denied,
+  #google_translate_element,
+  .google-translate-container {
+    display: none !important;
+  }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .goog-te-combo {
+    background: #374151 !important;
+    color: #f3f4f6 !important;
+    border-color: #4b5563 !important;
+  }
+  
+  .goog-te-combo:hover {
+    border-color: #0ea5e9 !important;
+    background: #4b5563 !important;
+  }
+  
+  /* 🔥 暗色模式下的权限样式 */
+  .access-denied {
+    background: #1f2937;
+    color: #f3f4f6;
+  }
+  
+  .article-item {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f3f4f6;
+  }
+  
+  .article-form {
+    background: #1f2937;
+    color: #f3f4f6;
+  }
+}
