@@ -1,3 +1,7 @@
+
+SEE DEMO HERE
+https://phile567.github.io/myblogdemo/
+
 ---
 
 # 🛒 マイブログ分離型プロジェクト
